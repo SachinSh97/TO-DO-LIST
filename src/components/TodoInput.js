@@ -28,7 +28,11 @@ export default class TodoInput extends Component {
         <Form.Item>
           <Button
             htmlType="submit"
-            type={editItem ? "danger" : "primary"}
+            type={editItem ? "default" : "primary"}
+            style={{
+              background: editItem ? "#32CD32" : "",
+              color: editItem ? "#fff" : "",
+            }}
             block
           >
             {editItem ? "edit item" : "add item"}

@@ -22,8 +22,7 @@ export default class TodoList extends Component {
           type="danger"
           block
           onClick={clearList}
-          ghost
-          style={{ width: "40%", marginLeft: "30%", marginTop: "10%" }}
+          style={{ marginLeft: "-2.5%", marginTop: "5%" }}
         >
           Clear List
         </Button>
