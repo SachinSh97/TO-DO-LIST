@@ -4,17 +4,28 @@ import moment from "moment";
 
 export default class TaskTable extends Component {
   state = {
-    value: moment("2017-01-25"),
-    selectedValue: moment("2017-01-25"),
+    value: moment(""),
+    selectedValue: moment(""),
   };
 
   onSelect = (value) => {
+    debugger;
     this.setState({
       value,
       selectedValue: value,
     });
   };
-
+  componentDidMount = () => {
+    debugger;
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    this.setState({ value: moment(date), selectedValue: moment(date) });
+  };
   onPanelChange = (value) => {
     this.setState({ value });
   };

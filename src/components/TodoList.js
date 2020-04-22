@@ -43,6 +43,7 @@ export default class TodoList extends Component {
                   <List.Item.Meta
                     title={<a href="https://ant.design">{item.title}</a>}
                   />
+                  <div>{item.date}</div>
                 </Skeleton>
               </List.Item>
             )}

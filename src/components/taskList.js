@@ -4,9 +4,14 @@ import { List, Icon, Empty } from "antd";
 export default class TaskList extends Component {
   render() {
     const { items } = this.props;
-    const IconText = ({ type, text }) => (
+    const IconText = ({ type, text, theme, twoToneColor }) => (
       <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
+        <Icon
+          type={type}
+          theme={theme}
+          twoToneColor={twoToneColor}
+          style={{ marginRight: 8 }}
+        />
         {text}
       </span>
     );
@@ -36,6 +41,13 @@ export default class TaskList extends Component {
                   type="edit"
                   text="Update"
                   key="list-vertical-like-o"
+                />,
+                <IconText
+                  type="check-circle"
+                  text="Completed Task"
+                  key="completed-task"
+                  theme="twoTone"
+                  twoToneColor="#52c41a"
                 />,
               ]}
             >
