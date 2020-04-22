@@ -15,6 +15,7 @@ class App extends Component {
     description: "",
     date: "",
     editItem: false,
+    audioUrl: "",
   };
   // handleChange = (e) => {
   //   debugger;
@@ -29,6 +30,7 @@ class App extends Component {
       title: e.Task_Heading,
       description: e.Task_Description,
       date: e.Date_Of_Completion.format("YYYY-MM-DD"),
+      audio: this.state.audioUrl,
     };
     const updateItem = [...this.state.items, newItem];
     this.setState({
@@ -37,6 +39,10 @@ class App extends Component {
       id: this.state.id + 1,
       editItem: false,
     });
+  };
+  handleAudio = (e) => {
+    debugger;
+    this.setState({ audioUrl: e });
   };
   clearList = () => {
     alert("Do You want to continue??");
@@ -78,6 +84,7 @@ class App extends Component {
             item={this.state.item}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            handleAudio={this.handleAudio}
             editItem={this.state.editItem}
           />
           <TodoList

@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Button, Input, Icon, Tooltip, Form, DatePicker } from "antd";
+import Recorder from "./recorder";
 
 const { TextArea } = Input;
 class TodoInput extends Component {
+  state = {
+    audioUrl: "",
+  };
   handleSubmit = (e) => {
     e.preventDefault();
     const { handleSubmit } = this.props;
@@ -20,9 +24,10 @@ class TodoInput extends Component {
   utilFormReset = () => {
     this.props.form.resetFields();
   };
+
   componentDidMount = () => {};
   render() {
-    const { item, handleChange, editItem } = this.props;
+    const { item, editItem, handleAudio } = this.props;
     const { getFieldDecorator } = this.props.form;
     debugger;
     return (
@@ -83,6 +88,11 @@ class TodoInput extends Component {
               },
             ],
           })(<DatePicker onChange={this.onDateChange} />)}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("audio_of_task")(
+            <Recorder handleAudio={handleAudio} />
+          )}
         </Form.Item>
         <Form.Item>
           <Button
