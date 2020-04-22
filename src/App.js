@@ -5,24 +5,30 @@ import "./App.css";
 import TaskTable from "./components/calender";
 import TaskList from "./components/taskList";
 import TodoInput from "./components/TodoInput";
+import moment from "moment";
 
 class App extends Component {
   state = {
     items: [],
     id: 0,
     item: "",
+    description: "",
+    date: "",
     editItem: false,
   };
-  handleChange = (e) => {
-    this.setState({
-      item: e.target.value,
-    });
-  };
+  // handleChange = (e) => {
+  //   debugger;
+  //   this.setState({
+  //     item: e.target.value,
+  //   });
+  // };
   handleSubmit = (e) => {
-    e.preventDefault();
+    debugger;
     const newItem = {
       id: this.state.id,
-      title: this.state.item,
+      title: e.Task_Heading,
+      description: e.Task_Description,
+      date: e.Date_Of_Completion.format("YYYY-MM-DD"),
     };
     const updateItem = [...this.state.items, newItem];
     this.setState({
@@ -33,6 +39,7 @@ class App extends Component {
     });
   };
   clearList = () => {
+    alert("Do You want to continue??");
     this.setState({
       items: [],
     });
@@ -44,7 +51,9 @@ class App extends Component {
     });
   };
   handleEdit = (id) => {
+    debugger;
     const filteredItems = this.state.items.filter((item) => item.id !== id);
+
     const selectedItem = this.state.items.find((item) => item.id === id);
     this.setState({
       items: filteredItems,
@@ -56,11 +65,13 @@ class App extends Component {
   render() {
     return (
       <Row>
-        <Col span={6} style={{ margin: "1%" }}>
+        <Col span={6} style={{ marginLeft: "1%", marginRight: "1%" }}>
           <div style={{ marginTop: "10%" }} />
-          <TaskTable />
+          <Card>
+            <TaskTable />
+          </Card>
         </Col>
-        <Divider type="vertical" />
+
         <Col span={10}>
           <h1 style={{ textAlign: "center", fontWeight: "600" }}>TodoInput</h1>
           <TodoInput
@@ -76,11 +87,14 @@ class App extends Component {
             handleEdit={this.handleEdit}
           />
         </Col>
-        <Col span={6} style={{ margin: "1%" }}>
-          <TaskList />
+        <Col span={6} style={{ marginLeft: "1%" }}>
+          <Card style={{ marginTop: "10%", width: "450px" }}>
+            <TaskList items={this.state.items} />
+          </Card>
         </Col>
       </Row>
     );
   }
 }
+
 export default App;
